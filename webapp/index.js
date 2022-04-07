@@ -20,7 +20,7 @@ function searchFromVoice() {
 
 function search() {
   var searchTerm = document.getElementById("searchbar").value;
-  var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
+  var apigClient = apigClientFactory.newClient({ apiKey: "3v7s3vevjI3i3ARBRI8fyaDxOGTtAEw1svh5Vjfe" });
 
 
     var body = { };
@@ -38,6 +38,7 @@ function search() {
           console.log("NO RESULT");
       });
 
+
 }
 
 
@@ -51,13 +52,13 @@ function showImages(res) {
   }
   }
   
-  console.log(res);
+  console.log(res.imagePaths);
   if (res.length == 0) {
     var newContent = document.createTextNode("No image to display");
     newDiv.appendChild(newContent);
   }
   else {
-    results=res.body.imagePaths
+    results=res.imagePaths
     for (var i = 0; i < results.length; i++) {
       console.log(results[i]);
       var newDiv = document.getElementById("images");
@@ -67,7 +68,7 @@ function showImages(res) {
       if(classname){newimg.classList.add();}
       
       filename = results[i].substring(results[i].lastIndexOf('/')+1)
-      newimg.src = "https://pipebucketcloud.s3.amazonaws.com/"+filename;
+      newimg.src = "https://csgyb2.s3.us-west-2.amazonaws.com/"+filename;
       newDiv.appendChild(newimg);
     }
   }
@@ -112,11 +113,11 @@ function previewFile(input) {
     else {
       encodedStr = encoded.substring(32, last_index_quote);
     }
-    var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
+    var apigClient = apigClientFactory.newClient({ apiKey: "3v7s3vevjI3i3ARBRI8fyaDxOGTtAEw1svh5Vjfe" });
 
     var params = {
         "key": name,
-        "bucket": "pipebucketcloud",
+        "bucket": "csgyb2",
         "Content-Type": "image/jpg",
     };
 
@@ -126,7 +127,7 @@ function previewFile(input) {
       }
     };
 
-    apigClient.uploadBucketKeyPut(params, encodedStr, additionalParams)
+    apigClient.uploadPut(params, encodedStr, additionalParams)
       .then(function (result) {
         console.log(result);
         console.log('success OK');
