@@ -5,7 +5,7 @@
     <title>PicPiper</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
     
     
@@ -30,7 +30,9 @@
         </div>
 
         <div class="buttons">
-            <input type="file" id="realfile" onchange="previewFile(this);" hidden="hidden"/>
+            <input type="file" id="realfile" onchange="
+                previewFile(event.target)
+            " hidden="hidden"/>
             <button onclick="search()" class="button" type="button">Search Image</button>
             <button onclick="uploadImage()" class="button" type="button">Upload Image</button>
             
