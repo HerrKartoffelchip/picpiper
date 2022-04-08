@@ -94,6 +94,7 @@ function previewFile(input) {
   fileExt = name.split(".").pop();
   
   console.log(fileExt)
+  console.log(name)
   console.log("THIS IS THE EXTENSION!!")
 
   var onlyname = name.replace(/\.[^/.]+$/, "");
@@ -116,7 +117,7 @@ function previewFile(input) {
     var apigClient = apigClientFactory.newClient({ apiKey: "3v7s3vevjI3i3ARBRI8fyaDxOGTtAEw1svh5Vjfe" });
 
     var params = {
-        "key": name,
+        "filename": name,
         "bucket": "csgyb2",
         "Content-Type": "image/jpg",
     };
@@ -127,7 +128,7 @@ function previewFile(input) {
       }
     };
 
-    apigClient.uploadPut(params, encodedStr, additionalParams)
+    apigClient.uploadBucketFilenamePut(params, encodedStr, additionalParams)
       .then(function (result) {
         console.log(result);
         console.log('success OK');
