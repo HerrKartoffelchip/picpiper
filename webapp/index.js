@@ -91,6 +91,8 @@ function uploadImage() {
 
 function previewFile(input) {
   var reader = new FileReader();
+  var label = document.getElementById('labelbox').value;
+  var label = String(label)
   name = input.files[0].name;
   fileExt = name.split('.').pop();
   console.log(input.files[0])
@@ -100,7 +102,7 @@ function previewFile(input) {
     'headers':{
       'Content-Type': 'image/jpeg',
       'x-api-key': '3v7s3vevjI3i3ARBRI8fyaDxOGTtAEw1svh5Vjfe',
-      'x-amz-meta-customLabels' : 'hello'
+      'x-amz-meta-customLabels' : label
     }
   }
   ).then(res=>console.log(res)).catch(e=>console.log(e))
